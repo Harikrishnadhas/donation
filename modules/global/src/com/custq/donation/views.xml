@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="donation_DonationCollection" name="donationCollection-view" extends="_local">
+        <property name="agenda" view="_minimal"/>
+        <property name="person" view="_minimal"/>
+        <property name="book" view="_local"/>
+    </view>
+    <view entity="donation_Person" name="person-view" extends="_local">
+        <property name="donations" view="donationCollection-view"/>
+    </view>
+    <view entity="donation_CollectionAgenda" name="collectionAgenda-view" extends="_local">
+        <property name="collections" view="donationCollection-view"/>
+    </view>
+</views>

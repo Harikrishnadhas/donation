@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://personEdit.caption"
+        focusComponent="form"
+        messagesPack="com.custq.donation.web.screens.person">
+    <data>
+        <instance id="personDc"
+                  class="com.custq.donation.entity.Person">
+            <view extends="person-view"/>
+            <loader/>
+            <collection id="donationsDc" property="donations"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="donationCollectionsTable" spacing="true">
+        <form id="form" dataContainer="personDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <textField id="fatherNameField" property="fatherName"/>
+                <textField id="placeField" property="place"/>
+                <textField id="phoneNoField" property="phoneNo"/>
+                <textField id="amount" property="amount"/>
+            </column>
+        </form>
+
+        <dataGrid id="donationCollectionsTable" width="100%" dataContainer="donationsDc">
+            <actions>
+                <action id="create" type="create"/>
+            </actions>
+            <buttonsPanel alwaysVisible="true">
+                <button id="donationCollectionsTableCreateBtn" action="donationCollectionsTable.create"/>
+            </buttonsPanel>
+            <columns>
+                <column id="agenda" property="agenda"/>
+                <column id="date" property="date"/>
+                <column id="person" property="person"/>
+                <column id="book" property="book.amount"/>
+                <column id="billNo" property="billNo"/>
+            </columns>
+        </dataGrid>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://collectionAgendaBrowse.caption"
+        focusComponent="collectionAgendasTable"
+        messagesPack="com.custq.donation.web.screens.collectionagenda">
+    <data readOnly="true">
+        <collection id="collectionAgendasDc"
+                    class="com.custq.donation.entity.CollectionAgenda">
+            <view extends="collectionAgenda-view"/>
+            <loader id="collectionAgendasDl">
+                <query>
+                    <![CDATA[select e from donation_CollectionAgenda e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="collectionAgendasTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="collectionAgendasTable"
+                dataLoader="collectionAgendasDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="collectionAgendasTable"
+                    width="100%"
+                    dataContainer="collectionAgendasDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="agenda"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="collectionAgendasTable.create"/>
+                <button id="editBtn" action="collectionAgendasTable.edit"/>
+                <button id="removeBtn" action="collectionAgendasTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

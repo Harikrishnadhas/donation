@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://donationCollectionEdit.caption"
+        focusComponent="form"
+        messagesPack="com.custq.donation.web.screens.donationcollection">
+    <data>
+        <instance id="donationCollectionDc"
+                  class="com.custq.donation.entity.DonationCollection">
+            <view extends="donationCollection-view"/>
+            <loader/>
+        </instance>
+        <collection id="collectionAgendasDc" class="com.custq.donation.entity.CollectionAgenda">
+            <view extends="_minimal"/>
+            <loader id="collectionAgendasDl">
+                <query>
+                    <![CDATA[select e from donation_CollectionAgenda e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="personsDc" class="com.custq.donation.entity.Person">
+            <view extends="_minimal"/>
+            <loader id="personsDl">
+                <query>
+                    <![CDATA[select e from donation_Person e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="donationBooksDc" class="com.custq.donation.entity.DonationBook">
+            <view extends="_local"/>
+            <loader id="donationBooksDl">
+                <query>
+                    <![CDATA[select e from donation_DonationBook e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="donationCollectionDc">
+            <column width="350px">
+                <dateField id="dateField" property="date"/>
+                <lookupPickerField id="agendaField" property="agenda" optionsContainer="collectionAgendasDc">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </lookupPickerField>
+                <lookupPickerField id="personField" property="person" optionsContainer="personsDc">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </lookupPickerField>
+                <lookupPickerField id="bookField" property="book" optionsContainer="donationBooksDc">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </lookupPickerField>
+                <textField id="billNoField" property="billNo"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

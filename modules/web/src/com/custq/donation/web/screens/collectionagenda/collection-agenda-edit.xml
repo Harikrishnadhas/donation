@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://collectionAgendaEdit.caption"
+        focusComponent="form"
+        messagesPack="com.custq.donation.web.screens.collectionagenda">
+    <data>
+        <instance id="collectionAgendaDc"
+                  class="com.custq.donation.entity.CollectionAgenda">
+            <view extends="collectionAgenda-view"/>
+            <loader/>
+            <collection id="collectionsDc" property="collections"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="collectionsBox" spacing="true">
+        <form id="form" dataContainer="collectionAgendaDc">
+            <column width="350px">
+                <textField id="agendaField" property="agenda"/>
+            </column>
+            <column>
+                <textField id="collectionAmount" editable="false" datatype="int" caption="msg://total"/>
+            </column>
+        </form>
+        <groupBox id="collectionsBox" caption="msg://com.custq.donation.entity/CollectionAgenda.collections" expand="collectionsTable">
+            <table id="collectionsTable" dataContainer="collectionsDc" width="100%">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="date"/>
+                    <column id="person"/>
+                    <column id="book.amount"/>
+                    <column id="billNo"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="collectionsTable.create"/>
+                    <button action="collectionsTable.edit"/>
+                    <button action="collectionsTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

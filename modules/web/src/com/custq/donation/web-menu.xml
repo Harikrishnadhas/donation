@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-donation" insertBefore="administration" caption="mainMsg://menu_config.application-donation">
+        <item screen="donation_Person.browse" caption="mainMsg://menu_config.donation_Person.browse"/>
+        <item screen="donation_DonationBook.browse" caption="mainMsg://menu_config.donation_DonationBook.browse"/>
+        <item screen="donation_DonationCollection.browse"
+              caption="mainMsg://menu_config.donation_DonationCollection.browse"/>
+        <item screen="donation_CollectionAgenda.browse"
+              caption="mainMsg://menu_config.donation_CollectionAgenda.browse"/>
+    </menu>
+</menu-config>

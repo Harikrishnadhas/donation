@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://donationCollectionBrowse.caption"
+        focusComponent="donationCollectionsTable"
+        messagesPack="com.custq.donation.web.screens.donationcollection">
+    <data readOnly="true">
+        <collection id="donationCollectionsDc"
+                    class="com.custq.donation.entity.DonationCollection">
+            <view extends="donationCollection-view"/>
+            <loader id="donationCollectionsDl">
+                <query>
+                    <![CDATA[select e from donation_DonationCollection e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="donationCollectionsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="donationCollectionsTable"
+                dataLoader="donationCollectionsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="donationCollectionsTable"
+                    width="100%"
+                    dataContainer="donationCollectionsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="date"/>
+                <column id="agenda"/>
+                <column id="person"/>
+                <column id="book"/>
+                <column id="billNo"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="donationCollectionsTable.create"/>
+                <button id="editBtn" action="donationCollectionsTable.edit"/>
+                <button id="removeBtn" action="donationCollectionsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
